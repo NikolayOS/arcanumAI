@@ -3,6 +3,7 @@ import axios from 'axios';
 import style from  './ThreeCardPage.module.css';
 import Card from '../../components/cardComponent/Card';
 import ResponseField from '../../components/responseField/ResponseField';
+import Preloader from '../../components/preloader/Preloader';
 
 
 
@@ -10,6 +11,7 @@ const ThreeCardPage: React.FC = () => {
 	const [disablParam, setDisablParam] = useState(false);
     const [question, setQuestion] = useState("");
 	const [resault, setResault] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 	const [threeCards, setThreeCards] = useState([{id: 1, name: "", description: "", img: ""}, {id: 2, name: "", description: "", img: ""}, {id: 3, name: "", description: "", img: ""}]);
 
 	function questionFunction(event: React.ChangeEvent<HTMLInputElement>) {
@@ -18,15 +20,17 @@ const ThreeCardPage: React.FC = () => {
 
 	function shuffled () {
 		setDisablParam(!disablParam);
+		setIsLoading(true);
 		fetchData();
 	}
 		const fetchData = async () => {
 			try {
-				const res = await axios.post('http://localhost:3000', {
+				const res = await axios.post('https://arcanumaibackend.onrender.com', {
 					question: question,
 				});
 				setThreeCards(res.data.threeCards);
 				setResault(res.data.message.content);
+				setIsLoading(false);
 				console.log(res.data);
 			} catch (err) {
 				console.error(err);
@@ -36,6 +40,7 @@ const ThreeCardPage: React.FC = () => {
 	<div className={style.main}>
 				<input type="text" className={style.questionField} placeholder='Ask your question' value={question} onChange={questionFunction}/>
 				<button className={style.button} onClick={() => shuffled()} disabled={disablParam ? true : false}>Start</button>
+				{isLoading ? <Preloader/> : null}
 				<div className={style.cardsList}>
 				{threeCards.map((card) => (<Card key={card.id} title={card.name} img = {card.img}/>))}
 				</div>
