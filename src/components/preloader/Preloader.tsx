@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './Preloader.module.css';
 import preloaderImage from '../../assets/preloader2.gif'; // Adjust the path as necessary
 
