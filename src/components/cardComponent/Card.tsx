@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = (props) => {
 
   return (
 	<div className={`${title ? style.rotate : style.card}`} >
-    {img ?<img src={`http://localhost:3000/cardes/${img}.jpg`} alt={title}  className={style.img}/> : <img src={cardBack} alt={title}  className={style.img}/>}
+    {img ?<img src={`/cards/${img}.jpg`} alt={title}  className={style.img}/> : <img src={cardBack} alt={title}  className={style.img}/>}
     
 		</div>
   );
