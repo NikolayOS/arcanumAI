@@ -1,0 +1,34 @@
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.main label {
+	display: flex;
+	flex-direction: column;
+}
+
+.main input {
+	margin: 5px;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	width: 200px;
+}
+
+.button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}
