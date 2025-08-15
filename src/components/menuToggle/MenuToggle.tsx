@@ -1,4 +1,3 @@
-import React from 'react';
 import style from './MenuToggle.module.css';
 import burger from '../../assets/burger.svg';
 import close from '../../assets/close.svg';
