@@ -1,42 +1,57 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import style from './LoginPage.module.css';
+import axios, { AxiosError } from 'axios';
+import type { ApiError } from '@google/genai';
+import { useNavigate } from 'react-router-dom';
 
 type LoginPageProps = object;
 
 const LoginPage: React.FC<LoginPageProps> = () => {
 
+	const navigate = useNavigate();
+	const [showErr, setShowErr] = useState<string>("");
+
 	const { 
 		register, 
-		handleSubmit, 
-		formState: { errors }
+		handleSubmit,
+		reset,
 	} = useForm<{ password: string; login: string }>();
 
-	const onSubmit = (data: { password: string; login: string }) => { console.log(data); };
+	const onSubmit = async (data: { password: string; login: string }) => {
+
+		try {
+			const res = await axios.post('http://localhost:3000/login', {
+			login: data.login,
+			password: data.password
+		})
+				console.log(res.data);
+		console.log(res.data.message);
+		navigate('/three-card');
+				setShowErr("");
+	} catch (error) {
+		const err = error as AxiosError<ApiError>;
+		if (err.response?.status === 400) {
+			setShowErr('Invalid login or password');
+  }
+		}
+		reset();
+		};
   return (
 	<div>
 	  <form action="" onSubmit={handleSubmit(onSubmit)} className={style.main}>
+		{showErr && <span className={style.error}>{showErr}</span>}
 		<label>
 			Login
 		<input {...register("login", {
 			required: "Login is required",
-			minLength: {
-				value: 3,
-				message: "Login must be at least 3 characters long"
-			}
 		})}/>
-		{errors.login && <span className={style.error}>{errors.login.message}</span>}
 		</label>
 		<label>
 			Password
 		<input type="password" {...register("password", {
 			required: "Password is required",
-			minLength: {
-				value: 6,
-				message: "Password must be at least 6 characters long"
-			}
 		})} />
-		{errors.password && <span className={style.error}>{errors.password.message}</span>}
 		</label>
 		<button type="submit" className={style.button}>Login</button>
 	  </form>
