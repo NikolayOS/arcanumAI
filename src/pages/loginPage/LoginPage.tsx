@@ -21,7 +21,7 @@ const LoginPage: React.FC<LoginPageProps> = () => {
 	const onSubmit = async (data: { password: string; login: string }) => {
 
 		try {
-			const res = await axios.post('http://localhost:3000/login', {
+			const res = await axios.post('https://arcanum-ai.vercel.app/login', {
 			login: data.login,
 			password: data.password
 		})

@@ -17,7 +17,7 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
 
 	const onSubmit = async (data: { password: string; login: string; email: string }) => {
 			try {
-		const res = await axios.post('http://localhost:3000/register', {
+		const res = await axios.post('https://arcanum-ai.vercel.app/register', {
 			login: data.login,
 			email: data.email,
 			password: data.password
