@@ -35,7 +35,6 @@ const MenuPage = (props: MenuPageProps ) => {
 		<li><Link to={ROUTES.main}>Home Page</Link></li>
 		<li><Link to={ROUTES.auth.login}>LOGIN</Link></li>
 		<li><Link to={ROUTES.auth.register}>REGISTER</Link></li>
-		<li><Link to={ROUTES.spreads.threeCard}>Spred</Link></li>
 	  </ul>
 	</div>
   );

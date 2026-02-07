@@ -14,7 +14,7 @@ const ThreeCardPage: React.FC = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [threeCards, setThreeCards] = useState([{id: 1, name: "", description: "", img: ""}, {id: 2, name: "", description: "", img: ""}, {id: 3, name: "", description: "", img: ""}]);
 	const URLprod = 'https://arcanumaibackend.onrender.com';
-	// const URLdev = 'http://localhost:3000';
+	// const URLdev =  'http://localhost:3000';
 
 	function questionFunction(event: React.ChangeEvent<HTMLInputElement>) {
 		setQuestion(event.target.value)
