@@ -38,7 +38,10 @@ const RegisterPage: React.FC<RegisterPageProps> = () => {
 			};
   return (
 	<div>
-	  <form noValidate action="" onSubmit={handleSubmit(onSubmit)} className={style.main}>
+	  <form noValidate action="" onSubmit={(e) => {
+		e.preventDefault();
+		handleSubmit(onSubmit)(e);
+	  }} className={style.main}>
 		<label>
 			Login
 		<input {...register("login", {

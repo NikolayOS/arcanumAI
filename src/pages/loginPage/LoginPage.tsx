@@ -39,7 +39,10 @@ const LoginPage: React.FC<LoginPageProps> = () => {
 		};
   return (
 	<div>
-	  <form action="" onSubmit={handleSubmit(onSubmit)} className={style.main}>
+	  <form action="" onSubmit={(e) => {
+		e.preventDefault();
+		handleSubmit(onSubmit)(e);
+	  }} className={style.main}>
 		{showErr && <span className={style.error}>{showErr}</span>}
 		<label>
 			Login
